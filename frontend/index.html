@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>FoodExpress - Food Delivery</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <!-- ==================== NAVBAR ==================== -->
+        <header class="navbar">
+            <div class="nav-container">
+                <div class="nav-left">
+                    <h1 class="logo" onclick="navigateTo('home')">🍔 FoodExpress</h1>
+                </div>
+                <div class="nav-search" id="nav-search">
+                    <input
+                        type="text"
+                        id="search-input"
+                        placeholder="Search for restaurants or cuisines..."
+                        oninput="handleSearch()"
+                    />
+                </div>
+                <div class="nav-right">
+                    <button class="nav-btn" onclick="navigateTo('orders')" id="nav-orders">
+                        📦 Orders
+                    </button>
+                    <button class="nav-btn cart-btn" onclick="navigateTo('cart')" id="nav-cart">
+                        🛒 Cart
+                        <span class="cart-count" id="cart-count">0</span>
+                    </button>
+                    <div class="user-menu" id="user-menu">
+                        <button class="nav-btn" onclick="toggleUserDropdown()" id="nav-user">
+                            👤 Account
+                        </button>
+                        <div class="dropdown" id="user-dropdown">
+                            <div id="user-info"></div>
+                            <button class="dropdown-item" onclick="navigateTo('profile')">Profile</button>
+                            <button class="dropdown-item" onclick="navigateTo('orders')">My Orders</button>
+                            <button class="dropdown-item danger" onclick="logout()" id="logout-btn">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ==================== MAIN CONTENT ==================== -->
+        <main class="container" id="main-content">
+            <!-- Views will be rendered here dynamically -->
+        </main>
+
+        <!-- ==================== AUTH MODAL ==================== -->
+        <div class="modal-overlay" id="auth-modal">
+            <div class="modal">
+                <button class="modal-close" onclick="closeAuthModal()">✕</button>
+                <div class="auth-tabs">
+                    <button class="tab active" onclick="switchAuthTab('login')" id="tab-login">Login</button>
+                    <button class="tab" onclick="switchAuthTab('register')" id="tab-register">Register</button>
+                </div>
+
+                <!-- Login Form -->
+                <form id="login-form" class="auth-form" onsubmit="handleLogin(event)">
+                    <h2>Welcome Back!</h2>
+                    <p class="auth-subtitle">Login to order your favorite food</p>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="login-email" placeholder="you@example.com" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="login-password" placeholder="Your password" required />
+                    </div>
+                    <button type="submit" class="btn-primary">Login</button>
+                    <p class="auth-hint">
+                        Test user: user@swiggy.com / user123<br />
+                        Admin: admin@swiggy.com / admin123
+                    </p>
+                </form>
+
+                <!-- Register Form -->
+                <form id="register-form" class="auth-form hidden" onsubmit="handleRegister(event)">
+                    <h2>Create Account</h2>
+                    <p class="auth-subtitle">Sign up to get started</p>
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="reg-name" placeholder="John Doe" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="reg-email" placeholder="you@example.com" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" id="reg-phone" placeholder="9876543210" />
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <textarea id="reg-address" placeholder="Your delivery address" rows="2"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Password (min 6 chars)</label>
+                        <input type="password" id="reg-password" placeholder="Create password" required />
+                    </div>
+                    <button type="submit" class="btn-primary">Register</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- ==================== CHECKOUT MODAL ==================== -->
+        <div class="modal-overlay" id="checkout-modal">
+            <div class="modal">
+                <button class="modal-close" onclick="closeCheckoutModal()">✕</button>
+                <h2>Checkout</h2>
+                <form id="checkout-form" class="auth-form" onsubmit="handleCheckout(event)">
+                    <div class="form-group">
+                        <label>Delivery Address</label>
+                        <textarea id="checkout-address" placeholder="Enter delivery address" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Payment Method</label>
+                        <select id="checkout-payment">
+                            <option value="COD">Cash on Delivery</option>
+                            <option value="CARD">Card</option>
+                            <option value="UPI">UPI</option>
+                        </select>
+                    </div>
+                    <div class="checkout-summary" id="checkout-summary"></div>
+                    <button type="submit" class="btn-primary">Place Order</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- ==================== TOAST ==================== -->
+        <div class="toast" id="toast"></div>
+
+        <!-- ==================== FOOTER ==================== -->
+        <footer class="footer">
+            <p>FoodExpress &copy; 2026 - Built with FastAPI Backend & Vanilla JS Frontend</p>
+        </footer>
+
+        <script src="script.js"></script>
+    </body>
+</html>
