@@ -216,42 +216,6 @@ swigg_example/
 
 ---
 
-## 🌐 Deployment on Render
-
-### Method 1: Blueprint (Recommended)
-
-1. Push your code to GitHub
-2. Go to [Render Dashboard](https://dashboard.render.com)
-3. Click **"New+"** → **"Blueprint"**
-4. Select your GitHub repository
-5. Render auto-detects `render.yaml` and creates the service
-6. Click **"Apply"** and wait for deployment
-7. Your app will be live at: `https://foodexpress-api.onrender.com`
-
-### Method 2: Manual Setup
-
-1. Go to [Render Dashboard](https://dashboard.render.com)
-2. Click **"New+"** → **"Web Service"**
-3. Connect your GitHub repository
-4. Configure:
-   - **Name**: `foodexpress-api`
-   - **Runtime**: Python 3
-   - **Build Command**: `pip install -r requirements.txt`
-   - **Start Command**: `cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT`
-   - **Plan**: Free
-5. Add Environment Variables:
-   - `PYTHON_VERSION` = `3.11.9`
-   - `SECRET_KEY` = (generate random)
-   - `ALGORITHM` = `HS256`
-   - `ACCESS_TOKEN_EXPIRE_MINUTES` = `10080`
-   - `DATABASE_URL` = `sqlite:///./swiggy.db`
-   - `DEBUG` = `False`
-6. Click **"Create Web Service"**
-
-### ⚠️ Note on SQLite
-Render's free tier uses ephemeral storage, so the SQLite database resets on each deploy. For production, use Render's managed PostgreSQL. For demo purposes, SQLite works fine.
-
----
 
 ## 🗄️ Database Models
 
