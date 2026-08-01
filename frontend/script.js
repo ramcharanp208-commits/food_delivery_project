@@ -1,7 +1,7 @@
 // ==================== CONFIG ====================
 // Dynamic API URL: uses localhost when opening file directly,
 // uses same origin (empty string) when served from backend (Render)
-const API_URL = window.location.protocol === "file:" ? "http://127.0.0.1:8000" : "";
+const API_URL = "http://onrender.com";
 
 // ==================== STATE ====================
 let authToken = localStorage.getItem("token") || null;
